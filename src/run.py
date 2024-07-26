@@ -36,7 +36,7 @@ print("Current date: " + formatted_date)
 
 PATH = '../webdrivers/chromedriver'
 
-# Set up Edge options
+# Set up Chrome options
 print("Setting Options")
 chrome_options = Options()
 chrome_options.add_argument('--headless')

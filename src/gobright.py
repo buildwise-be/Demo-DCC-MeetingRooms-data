@@ -22,36 +22,10 @@ def convert_to_minutes(available_in):
     else:
         return int(available_in.split()[2])
 
-def test_regex(pattern):
-    test_strings = [
-    "08:00 Feedback-momenten - Blop HR - Jon Snow",
-    "09:30 Product Review - Phase 1 - Team Discussion - Alice Johnson",
-    "14:15 Lunch - Break - Bob Smith",
-    "15:45 Project Update - Marketing Strategy - Mary-Jane Watson",
-    "17:00 Client Meeting - Important Notes - Jean-Claude Van Damme",
-    "08:00 Feedback-momenten - Weevo HR - Floris Caluwaerts",
-    "15:27 mfkldsgh-kk - stuff - Martha"
-    ]
-
-    for test_string in test_strings:
-        match = re.match(pattern, test_string)
-        
-        if match:
-            time = match.group(1)
-            event = match.group(2)
-            person = match.group(3)
-            
-            print(f"Time: {time}")
-            print(f"Event: {event}")
-            print(f"Person: {person}")
-            print("---")
-        else:
-            print(f"No match found for: {test_string}")
-            print("---")
 
 PATH = './webdrivers/chromedriver'
 
-# Set up Edge options
+# Set up Chrome options
 print("Setting Options")
 chrome_options = Options()
 chrome_options.add_argument('--headless')
@@ -90,7 +64,6 @@ bookings = []
 
 # Regex to capture fields
 pattern = r'^(\d{2}:\d{2})\s(.*)\s-\s([^-].*\S)$'
-#test_regex(pattern)
 
 # Iterate through the meeting rooms
 i = 0
@@ -160,14 +133,6 @@ while i < len(all_booking_data):
 
     i += 1
 
-print("------------")
-print(len(room_ids))
-print(len(locations))
-print(len(start_hours))
-print(len(organizers))
-print(len(remaining_times))
-print("------------")
-
 
 i = 0
 while i < len(room_ids):
@@ -175,15 +140,6 @@ while i < len(room_ids):
     bookings.append(booking)
     print(i)
     i += 1
-
-
-# Print the lists
-print("Room IDs:", room_ids)
-print("Locations:", locations)
-print("Start Hours:", start_hours)
-print("Organizers:", organizers)
-print("Remaining Times:", remaining_times)
-print("Titles: ", booking_titles)
 
 print("Quit")
 driver.quit()
