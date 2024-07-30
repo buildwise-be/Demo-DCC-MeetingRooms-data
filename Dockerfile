@@ -5,7 +5,7 @@ RUN mkdir /webdrivers && \
 COPY ./webdrivers/* /webdrivers
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends ./webdrivers/google-chrome-stable_current_amd64.deb python3-pip postgresql-server-dev-all build-essential libpq-dev python3-dev
+    apt-get install -y --no-install-recommends ./webdrivers/google-chrome-stable_current_amd64.deb python3-pip build-essential libpq-dev python3-dev
 
 COPY requirements.txt /
 
