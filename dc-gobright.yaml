@@ -3,5 +3,5 @@ name: gobright
 services:
 
   gobright:
-    image: bwzgobright:0.1
+    image: gobright
 

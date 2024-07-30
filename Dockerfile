@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
-RUN mkdir /webdrivers && \
-    mkdir /src
+RUN mkdir /webdrivers /src
 
 COPY ./webdrivers/* /webdrivers
 
