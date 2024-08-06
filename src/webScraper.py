@@ -54,12 +54,13 @@ class MeetingRoomScraper:
     def _extract_entities(self, all_booking_data: list[str]) -> list[EntityType]:
         entities = []
         pattern = r'^(\d{2}:\d{2})\s(.*)\s-\s([^-].*\S)$'
+        default_start_time = datetime(1900, 1, 1, 0, 0)
 
         for booking in all_booking_data:
             lines = booking.strip().splitlines()
             room_id = None
             location = None
-            start_time = datetime(1900, 1, 1, 0, 0)
+            start_time = default_start_time
             organizer = "NA"
             booking_title = "NA"
             look_for_details = False
@@ -91,6 +92,9 @@ class MeetingRoomScraper:
                     organizer=organizer,
                     title=booking_title
                 )
-                entities.append(entity)
+                if start_time != default_start_time:
+                    entities.append(entity)
+                else:
+                    print("Skipping")
 
         return entities
